@@ -39,6 +39,10 @@ const logs = (state = [], action) => {
           label: "number: "
         }
       ];
+    case "SAVE DATA":
+      console.log(action.data);
+      return [...state, action.data];
+
     default:
       return state;
   }

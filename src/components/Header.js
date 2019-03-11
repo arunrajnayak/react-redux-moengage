@@ -1,11 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { addCampaign } from "../actions";
+import { addCampaign, fetchData } from "../actions";
 
 class Header extends Component {
+  constructor(props) {
+    super(props);
+  }
   newCampaignHandler() {
     let result = prompt("Give name of campaign", "");
     this.props.addCampaign(result, new Date().toLocaleTimeString());
+  }
+
+  componentDidMount() {
+    this.props.fetchData();
   }
 
   render() {
@@ -28,7 +35,8 @@ class Header extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  addCampaign: (title, time) => dispatch(addCampaign(title, time))
+  addCampaign: (title, time) => dispatch(addCampaign(title, time)),
+  fetchData: () => dispatch(fetchData())
 });
 
 export default connect(
